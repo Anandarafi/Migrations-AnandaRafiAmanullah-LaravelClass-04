@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2020 at 08:49 AM
+-- Generation Time: Jan 15, 2020 at 08:53 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -37,6 +37,27 @@ CREATE TABLE `anggota` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `anggota`
+--
+
+INSERT INTO `anggota` (`id_anggota`, `nama_anggota`, `alamat`, `telp`, `created_at`, `updated_at`) VALUES
+(1, 'Supriyadi', 'Malang', '08123456789', '2020-01-15 06:49:39', NULL),
+(2, 'Bambang', 'Kediri', '081234567888', '2020-01-15 06:49:39', NULL),
+(3, 'ALex', 'Surabaya', '0812415123161551', '2020-01-15 06:49:39', NULL),
+(4, 'Supriyadi', 'Malang', '08123456789', '2020-01-15 06:49:47', NULL),
+(5, 'Bambang', 'Kediri', '081234567888', '2020-01-15 06:49:47', NULL),
+(6, 'ALex', 'Surabaya', '0812415123161551', '2020-01-15 06:49:47', NULL),
+(7, 'Supriyadi', 'Malang', '08123456789', '2020-01-15 06:56:07', NULL),
+(8, 'Bambang', 'Kediri', '081234567888', '2020-01-15 06:56:07', NULL),
+(9, 'ALex', 'Surabaya', '0812415123161551', '2020-01-15 06:56:07', NULL),
+(10, 'Supriyadi', 'Malang', '08123456789', '2020-01-15 06:58:14', NULL),
+(11, 'Bambang', 'Kediri', '081234567888', '2020-01-15 06:58:14', NULL),
+(12, 'ALex', 'Surabaya', '0812415123161551', '2020-01-15 06:58:14', NULL),
+(13, 'Supriyadi', 'Malang', '08123456789', '2020-01-15 06:58:32', NULL),
+(14, 'Bambang', 'Kediri', '081234567888', '2020-01-15 06:58:32', NULL),
+(15, 'ALex', 'Surabaya', '0812415123161551', '2020-01-15 06:58:32', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -52,6 +73,17 @@ CREATE TABLE `buku` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `buku`
+--
+
+INSERT INTO `buku` (`id_buku`, `judul`, `penerbit`, `pengarang`, `foto`, `created_at`, `updated_at`) VALUES
+(1, 'ThingSpeak', 'Alex', 'SupriyadiMedia', 'thing.jpg', '2020-01-15 07:24:59', NULL),
+(2, 'Hello Gaes', 'Supriyadi', 'AlexMedia', 'hello.jpg', '2020-01-15 07:24:59', NULL),
+(3, 'The Hell', 'Bambang', 'TokoMedia', 'hell.jpg', '2020-01-15 07:24:59', NULL),
+(4, 'A6 ', 'Asshiap', 'AhhaBledeg', 'A6.jpg', '2020-01-15 07:24:59', NULL),
+(5, 'Asus Gaming Nvidia', 'School', 'GamingMedia', 'asus.jpg', '2020-01-15 07:24:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -126,6 +158,17 @@ CREATE TABLE `petugas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data for table `petugas`
+--
+
+INSERT INTO `petugas` (`id_petugas`, `nama_petugas`, `alamat`, `telp`, `username`, `password`, `created_at`, `updated_at`) VALUES
+(1, 'Rafi', 'Probolinggo', '082231954774', 'anndrf_', 'wolffire1', '2020-01-15 06:58:32', NULL),
+(2, 'Faiz', 'Malang', '08123456789', 'faiz1', 'wolffire1', '2020-01-15 06:58:32', NULL),
+(3, 'Faseh', 'Kediri', '082231954774', 'faseh1', 'wolffire1', '2020-01-15 07:16:00', NULL),
+(4, 'Juri', 'Malang', '08123456789', 'juri1', 'wolffire1', '2020-01-15 07:16:00', NULL),
+(5, 'Bayu', 'Bekasi', '08123456789', 'bayu1', 'wolffire1', '2020-01-15 07:16:00', NULL);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -177,13 +220,13 @@ ALTER TABLE `petugas`
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_anggota` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id_buku` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_buku` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `detail`
@@ -207,7 +250,7 @@ ALTER TABLE `peminjaman`
 -- AUTO_INCREMENT for table `petugas`
 --
 ALTER TABLE `petugas`
-  MODIFY `id_petugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_petugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
