@@ -13,7 +13,7 @@ class RegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    | Register Controller
+    | Register Controller   
     |--------------------------------------------------------------------------
     |
     | This controller handles the registration of new users as well as their
@@ -50,9 +50,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'nama_petugas' => 'required',
+            'alamat' => 'required',
+            'telp'=> 'required',
+            'username' => 'required',
+            'password' => 'required',
         ]);
     }
 
@@ -60,14 +62,16 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Petugas
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        return Petugas::create([
+            'nama_petugas' => $req->nama_petugas,
+            'alamat' => $req->alamat,
+            'telp'=> $req->telp,
+            'username'=> $req->username,
+            'password'=> $req->password,
         ]);
     }
 }

@@ -29,6 +29,6 @@ class CreateAnggotaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('anggota');
     }
 }

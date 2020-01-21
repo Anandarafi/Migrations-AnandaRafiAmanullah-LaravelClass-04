@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePeminjamanTable extends Migration
+class CreatePeminjaman1Table extends Migration
 {
     /**
      * Run the migrations.
@@ -19,7 +19,7 @@ class CreatePeminjamanTable extends Migration
             $table->integer('id_anggota')->unsigned();
             $table->foreign('id_anggota')->references('id_anggota')->on('anggota')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('id_petugas')->unsigned();
-            $table->foreign('id_petugas')->references('id_petugas')->on('petugas')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_petugas')->references('id_petugas')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->date('tgl_tempo');
             $table->Integer('denda');
             $table->timestamps();
