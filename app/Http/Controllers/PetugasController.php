@@ -64,6 +64,7 @@ class PetugasController extends Controller
             'telp'=> 'required|string|max:255',
             'username' => 'required|string|max:255',
             'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|max:25',
         ]);
 
         if($validator->fails()){
@@ -76,6 +77,7 @@ class PetugasController extends Controller
             'telp'=>  $request->get('telp'),
             'username'=>  $request->get('username'),
             'password'=>  Hash::make($request->get('password')),
+            'level'=>  $request->get('level'),
         ]);
 
         $token = JWTAuth::fromUser($petugas);
@@ -92,6 +94,7 @@ class PetugasController extends Controller
             'telp'=> 'required',
             'username' => 'required',
             'password' => 'required',
+            'level' => 'required',
         ]);
         if($validator->fails()){
             return Response()->json($validator->errors());
@@ -102,6 +105,7 @@ class PetugasController extends Controller
             'telp'=> $request->telp,
             'username'=> $request->username,
             'password'=> $request->password,
+            'level'=> $request->level,
         ]);
         if($petugas){
             return Response()->json(['status'=>1,'message'=>'Data Petugas berhasil diubah']);

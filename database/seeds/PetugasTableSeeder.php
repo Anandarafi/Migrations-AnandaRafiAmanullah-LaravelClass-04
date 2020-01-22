@@ -11,7 +11,7 @@ class PetugasTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Petugas::insert([
+        \App\User::insert([
               [
                 'nama_petugas'    => 'Faseh',
                 'alamat'          => 'Kediri',

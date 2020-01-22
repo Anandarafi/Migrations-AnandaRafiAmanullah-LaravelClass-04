@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2020 at 08:53 AM
+-- Generation Time: Jan 22, 2020 at 08:11 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -56,7 +56,13 @@ INSERT INTO `anggota` (`id_anggota`, `nama_anggota`, `alamat`, `telp`, `created_
 (12, 'ALex', 'Surabaya', '0812415123161551', '2020-01-15 06:58:14', NULL),
 (13, 'Supriyadi', 'Malang', '08123456789', '2020-01-15 06:58:32', NULL),
 (14, 'Bambang', 'Kediri', '081234567888', '2020-01-15 06:58:32', NULL),
-(15, 'ALex', 'Surabaya', '0812415123161551', '2020-01-15 06:58:32', NULL);
+(15, 'ALex', 'Surabaya', '0812415123161551', '2020-01-15 06:58:32', NULL),
+(16, 'Supriyadi', 'Malang', '08123456789', '2020-01-22 07:04:31', NULL),
+(17, 'Bambang', 'Kediri', '081234567888', '2020-01-22 07:04:31', NULL),
+(18, 'ALex', 'Surabaya', '0812415123161551', '2020-01-22 07:04:31', NULL),
+(19, 'Supriyadi', 'Malang', '08123456789', '2020-01-22 07:04:46', NULL),
+(20, 'Bambang', 'Kediri', '081234567888', '2020-01-22 07:04:46', NULL),
+(21, 'ALex', 'Surabaya', '0812415123161551', '2020-01-22 07:04:46', NULL);
 
 -- --------------------------------------------------------
 
@@ -73,17 +79,6 @@ CREATE TABLE `buku` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `buku`
---
-
-INSERT INTO `buku` (`id_buku`, `judul`, `penerbit`, `pengarang`, `foto`, `created_at`, `updated_at`) VALUES
-(1, 'ThingSpeak', 'Alex', 'SupriyadiMedia', 'thing.jpg', '2020-01-15 07:24:59', NULL),
-(2, 'Hello Gaes', 'Supriyadi', 'AlexMedia', 'hello.jpg', '2020-01-15 07:24:59', NULL),
-(3, 'The Hell', 'Bambang', 'TokoMedia', 'hell.jpg', '2020-01-15 07:24:59', NULL),
-(4, 'A6 ', 'Asshiap', 'AhhaBledeg', 'A6.jpg', '2020-01-15 07:24:59', NULL),
-(5, 'Asus Gaming Nvidia', 'School', 'GamingMedia', 'asus.jpg', '2020-01-15 07:24:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -119,9 +114,11 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (14, '2020_01_14_062906_create_anggota_table', 1),
 (15, '2020_01_14_063750_create_petugas_table', 1),
-(16, '2020_01_14_064047_create_buku_table', 1),
 (17, '2020_01_14_064325_create_peminjaman_table', 1),
-(18, '2020_01_14_065658_create_detailpeminjaman_table', 1);
+(23, '2014_10_12_000000_create_users_table', 2),
+(24, '2020_01_14_064047_create_buku_table', 2),
+(25, '2020_01_14_064325_create_peminjaman1_table', 3),
+(26, '2020_01_14_065658_create_detailpeminjaman_table', 3);
 
 -- --------------------------------------------------------
 
@@ -143,30 +140,28 @@ CREATE TABLE `peminjaman` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `petugas`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `petugas` (
+CREATE TABLE `users` (
   `id_petugas` int(10) UNSIGNED NOT NULL,
   `nama_petugas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alamat` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `telp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `level` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `petugas`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `petugas` (`id_petugas`, `nama_petugas`, `alamat`, `telp`, `username`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'Rafi', 'Probolinggo', '082231954774', 'anndrf_', 'wolffire1', '2020-01-15 06:58:32', NULL),
-(2, 'Faiz', 'Malang', '08123456789', 'faiz1', 'wolffire1', '2020-01-15 06:58:32', NULL),
-(3, 'Faseh', 'Kediri', '082231954774', 'faseh1', 'wolffire1', '2020-01-15 07:16:00', NULL),
-(4, 'Juri', 'Malang', '08123456789', 'juri1', 'wolffire1', '2020-01-15 07:16:00', NULL),
-(5, 'Bayu', 'Bekasi', '08123456789', 'bayu1', 'wolffire1', '2020-01-15 07:16:00', NULL);
+INSERT INTO `users` (`id_petugas`, `nama_petugas`, `alamat`, `telp`, `username`, `password`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Rafi', 'Probolinggo', '082231954774', 'rafi1', '$2y$10$h0.SmWg8tI0ZgbjZ5FD.s.Cl2pjp5MKczZWWc9.D2/NdDlHDEoH6u', 'admin', NULL, '2020-01-22 00:08:15', '2020-01-22 00:08:15');
 
 --
 -- Indexes for dumped tables
@@ -207,9 +202,9 @@ ALTER TABLE `peminjaman`
   ADD KEY `peminjaman_id_petugas_foreign` (`id_petugas`);
 
 --
--- Indexes for table `petugas`
+-- Indexes for table `users`
 --
-ALTER TABLE `petugas`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id_petugas`);
 
 --
@@ -220,13 +215,13 @@ ALTER TABLE `petugas`
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_anggota` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id_buku` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_buku` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `detail`
@@ -238,7 +233,7 @@ ALTER TABLE `detail`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `peminjaman`
@@ -247,10 +242,10 @@ ALTER TABLE `peminjaman`
   MODIFY `id_peminjaman` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `petugas`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `petugas`
-  MODIFY `id_petugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `users`
+  MODIFY `id_petugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -268,7 +263,7 @@ ALTER TABLE `detail`
 --
 ALTER TABLE `peminjaman`
   ADD CONSTRAINT `peminjaman_id_anggota_foreign` FOREIGN KEY (`id_anggota`) REFERENCES `anggota` (`id_anggota`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `peminjaman_id_petugas_foreign` FOREIGN KEY (`id_petugas`) REFERENCES `petugas` (`id_petugas`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `peminjaman_id_petugas_foreign` FOREIGN KEY (`id_petugas`) REFERENCES `users` (`id_petugas`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
