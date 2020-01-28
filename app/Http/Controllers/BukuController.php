@@ -12,10 +12,11 @@ class BukuController extends Controller
     {
         $validator = Validator::make($req->all(), 
         [
+            'id_buku' => 'required',
             'judul' => 'required',
-            'penerbit' => 'required',
+            'penerbit'=> 'required',
             'pengarang'=> 'required',
-            'foto' => 'required',
+            'foto'=> 'required',
         ]);
 
         if($validator->fails()){
@@ -23,8 +24,9 @@ class BukuController extends Controller
         }
 
         $buku = Buku::create([
+            'id_buku' => $req->id_buku,
             'judul' => $req->judul,
-            'penerbit' => $req->penerbit,
+            'penerbit'=> $req->penerbit,
             'pengarang'=> $req->pengarang,
             'foto'=> $req->foto,
         ]);

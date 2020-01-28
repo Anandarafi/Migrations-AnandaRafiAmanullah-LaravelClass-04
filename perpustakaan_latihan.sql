@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2020 at 08:11 AM
+-- Generation Time: Jan 28, 2020 at 08:32 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -31,38 +31,11 @@ SET time_zone = "+00:00";
 CREATE TABLE `anggota` (
   `id_anggota` int(10) UNSIGNED NOT NULL,
   `nama_anggota` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alamat` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alamat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `telp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `anggota`
---
-
-INSERT INTO `anggota` (`id_anggota`, `nama_anggota`, `alamat`, `telp`, `created_at`, `updated_at`) VALUES
-(1, 'Supriyadi', 'Malang', '08123456789', '2020-01-15 06:49:39', NULL),
-(2, 'Bambang', 'Kediri', '081234567888', '2020-01-15 06:49:39', NULL),
-(3, 'ALex', 'Surabaya', '0812415123161551', '2020-01-15 06:49:39', NULL),
-(4, 'Supriyadi', 'Malang', '08123456789', '2020-01-15 06:49:47', NULL),
-(5, 'Bambang', 'Kediri', '081234567888', '2020-01-15 06:49:47', NULL),
-(6, 'ALex', 'Surabaya', '0812415123161551', '2020-01-15 06:49:47', NULL),
-(7, 'Supriyadi', 'Malang', '08123456789', '2020-01-15 06:56:07', NULL),
-(8, 'Bambang', 'Kediri', '081234567888', '2020-01-15 06:56:07', NULL),
-(9, 'ALex', 'Surabaya', '0812415123161551', '2020-01-15 06:56:07', NULL),
-(10, 'Supriyadi', 'Malang', '08123456789', '2020-01-15 06:58:14', NULL),
-(11, 'Bambang', 'Kediri', '081234567888', '2020-01-15 06:58:14', NULL),
-(12, 'ALex', 'Surabaya', '0812415123161551', '2020-01-15 06:58:14', NULL),
-(13, 'Supriyadi', 'Malang', '08123456789', '2020-01-15 06:58:32', NULL),
-(14, 'Bambang', 'Kediri', '081234567888', '2020-01-15 06:58:32', NULL),
-(15, 'ALex', 'Surabaya', '0812415123161551', '2020-01-15 06:58:32', NULL),
-(16, 'Supriyadi', 'Malang', '08123456789', '2020-01-22 07:04:31', NULL),
-(17, 'Bambang', 'Kediri', '081234567888', '2020-01-22 07:04:31', NULL),
-(18, 'ALex', 'Surabaya', '0812415123161551', '2020-01-22 07:04:31', NULL),
-(19, 'Supriyadi', 'Malang', '08123456789', '2020-01-22 07:04:46', NULL),
-(20, 'Bambang', 'Kediri', '081234567888', '2020-01-22 07:04:46', NULL),
-(21, 'ALex', 'Surabaya', '0812415123161551', '2020-01-22 07:04:46', NULL);
 
 -- --------------------------------------------------------
 
@@ -112,13 +85,13 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(14, '2020_01_14_062906_create_anggota_table', 1),
 (15, '2020_01_14_063750_create_petugas_table', 1),
 (17, '2020_01_14_064325_create_peminjaman_table', 1),
-(23, '2014_10_12_000000_create_users_table', 2),
-(24, '2020_01_14_064047_create_buku_table', 2),
-(25, '2020_01_14_064325_create_peminjaman1_table', 3),
-(26, '2020_01_14_065658_create_detailpeminjaman_table', 3);
+(30, '2014_10_12_000000_create_users_table', 2),
+(31, '2020_01_14_062906_create_anggota_table', 2),
+(32, '2020_01_14_064047_create_buku_table', 2),
+(33, '2020_01_14_064325_create_peminjaman1_table', 2),
+(34, '2020_01_14_065658_create_detailpeminjaman_table', 2);
 
 -- --------------------------------------------------------
 
@@ -151,17 +124,9 @@ CREATE TABLE `users` (
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `level` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id_petugas`, `nama_petugas`, `alamat`, `telp`, `username`, `password`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Rafi', 'Probolinggo', '082231954774', 'rafi1', '$2y$10$h0.SmWg8tI0ZgbjZ5FD.s.Cl2pjp5MKczZWWc9.D2/NdDlHDEoH6u', 'admin', NULL, '2020-01-22 00:08:15', '2020-01-22 00:08:15');
 
 --
 -- Indexes for dumped tables
@@ -215,7 +180,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_anggota` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `buku`
@@ -233,7 +198,7 @@ ALTER TABLE `detail`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `peminjaman`
@@ -245,7 +210,7 @@ ALTER TABLE `peminjaman`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_petugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_petugas` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

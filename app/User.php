@@ -10,15 +10,15 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
-    
-    protected $table= 'users';
+    protected $table="users";
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'nama_petugas', 'alamat', 'telp', 'username', 'password', 'level',
+        'nama_petugas','alamat', 'telp', 'username', 'password', 'level'
     ];
 
     /**
@@ -29,14 +29,22 @@ class User extends Authenticatable implements JWTSubject
     protected $hidden = [
         'password', 'remember_token',
     ];
+        public function getJWTIdentifier()
+        {
+            return $this->getKey();
+        }
+        public function getJWTCustomClaims()
+        {
+            return [];
+        }
 
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }

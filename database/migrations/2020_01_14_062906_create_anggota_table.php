@@ -16,7 +16,7 @@ class CreateAnggotaTable extends Migration
         Schema::create('anggota', function (Blueprint $table) {
             $table->increments('id_anggota');
             $table->string('nama_anggota');
-            $table->text('alamat');
+            $table->string('alamat');
             $table->string('telp');
             $table->timestamps();
         });

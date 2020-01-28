@@ -22,9 +22,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 |                               SEARCH                                  |
 |-----------------------------------------------------------------------|
 */
-Route::get('/',function(){
-    return Auth::user()->level;
-})->middleware('jwt.verify');
+//Route::get('/',function(){
+    //return Auth::user()->level;
+//})->middleware('jwt.verify');
 
 /*
 |-----------------------------------------------------------------------|
@@ -32,27 +32,27 @@ Route::get('/',function(){
 |-----------------------------------------------------------------------|
 */
 Route::post('login','PetugasController@login');
-Route::get('/login/check', 'PetugasController@getAuthenticatedUser')->middleware('jwt.verify');
+Route::get('/login/check', 'PetugasController@getAuthenticatedUser');
 
 /*
 |-----------------------------------------------------------------------|
 |                            CRUD ANGGOTA                               |
 |-----------------------------------------------------------------------|
 */
-Route::post('anggota','AnggotaController@store')->middleware('jwt.verify');
-Route::put('anggota/{id}','SiswaController@update')->middleware('jwt.verify');
-Route::delete('anggota/{id}','AnggotaController@delete')->middleware('jwt.verify');
-Route::get('anggota','AnggotaController@tampil')->middleware('jwt.verify');
+Route::post('anggota','AnggotaController@store');
+Route::put('anggota/{id}','AnggotaController@update');
+Route::delete('anggota/{id}','AnggotaController@delete');
+Route::get('anggota','AnggotaController@tampil');
 
 /*
 |-----------------------------------------------------------------------|
 |                              CRUD BUKU                                |
 |-----------------------------------------------------------------------|
 */
-Route::post('buku','BukuController@store')->middleware('jwt.verify');
-Route::put('buku/{id}','BukuController@update')->middleware('jwt.verify');
-Route::delete('buku/{id}','BukuController@delete')->middleware('jwt.verify');
-Route::get('buku','BukuController@tampil')->middleware('jwt.verify');
+Route::post('buku','BukuController@store');
+Route::put('buku/{id}','BukuController@update');
+Route::delete('buku/{id}','BukuController@delete');
+Route::get('buku','BukuController@tampil');
 
 /*
 |-----------------------------------------------------------------------|

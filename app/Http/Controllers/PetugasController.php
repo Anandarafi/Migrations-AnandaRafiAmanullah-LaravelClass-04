@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Validator;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
-
 class PetugasController extends Controller
 {
 
@@ -19,13 +18,34 @@ class PetugasController extends Controller
 
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 400);
+                $test=array(
+                    'logged'=>false,
+                    'token'=>'',
+                    'message'=> 'Login Gagal',
+                );
+                return response()->json($test);
+                
             }
         } catch (JWTException $e) {
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
+        
+        if($token){
+            $test=array(
+                'logged'=>true,
+                'token'=>$token,
+                'message'=> 'Login berhasil'
+            );
+        }
+        else{
+            $test=array(
+                'logged'=>false,
+                'token'=>'',
+                'message'=> 'Login Gagal'
+            );
+        }
 
-        return response()->json(compact('token'));
+        return response()->json($test);
     }
 
 
@@ -33,7 +53,7 @@ class PetugasController extends Controller
     {
         try {
 
-            if (! $petugas = JWTAuth::parseToken()->authenticate()) {
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             }
 
@@ -50,8 +70,9 @@ class PetugasController extends Controller
             return response()->json(['token_absent'], $e->getStatusCode());
 
         }
-
-        return response()->json(compact('petugas'));
+        $auth=true;
+        return response()->json(compact('auth','user'));
+    
     }
 
 
@@ -71,7 +92,7 @@ class PetugasController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
 
-        $petugas = User::create([
+        $user = User::create([
             'nama_petugas' => $request->get('nama_petugas'),
             'alamat' =>  $request->get('alamat'),
             'telp'=>  $request->get('telp'),
@@ -80,9 +101,9 @@ class PetugasController extends Controller
             'level'=>  $request->get('level'),
         ]);
 
-        $token = JWTAuth::fromUser($petugas);
+        $token = JWTAuth::fromUser($user);
         
-        return response()->json(compact('petugas','token'),201);
+        return response()->json(compact('user','token'),201);
     }
 
     public function update($id, Request $request)
@@ -99,7 +120,7 @@ class PetugasController extends Controller
         if($validator->fails()){
             return Response()->json($validator->errors());
         }
-        $petugas=User::where('id_petugas',$id)->update([
+        $user=User::where('id_petugas',$id)->update([
             'nama_petugas' => $request->nama_petugas,
             'alamat' => $request->alamat,
             'telp'=> $request->telp,
@@ -107,7 +128,7 @@ class PetugasController extends Controller
             'password'=> $request->password,
             'level'=> $request->level,
         ]);
-        if($petugas){
+        if($user){
             return Response()->json(['status'=>1,'message'=>'Data Petugas berhasil diubah']);
         }
         else{
@@ -117,8 +138,8 @@ class PetugasController extends Controller
 
     public function delete($id)
     {
-        $petugas=User::where('id_petugas',$id)->delete();
-        if($petugas){
+        $user=User::where('id_petugas',$id)->delete();
+        if($user){
             return Response()->json(['status'=>1,'message'=>'Data Petugas berhasil dihapus']);
         }
         else{
@@ -127,9 +148,9 @@ class PetugasController extends Controller
     }
     public function tampil()
     {
-        $petugas=User::all();
-        if($petugas){
-            return Response()->json(['Data'=>$petugas,'status'=>1]);
+        $user=User::all();
+        if($user){
+            return Response()->json(['Data'=>$user,'status'=>1]);
         }
         else{
             return Response()->json(['status'=>0]);

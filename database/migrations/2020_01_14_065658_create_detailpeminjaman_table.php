@@ -16,7 +16,7 @@ class CreateDetailpeminjamanTable extends Migration
         Schema::create('detail', function (Blueprint $table) {
             $table->increments('id_detail');
             $table->integer('id_peminjaman')->unsigned();
-            $table->foreign('id_peminjaman')->references('id_peminjaman')->on('peminjaman')->onDelete('cascade')->onUpdate('cascade');
+           $table->foreign('id_peminjaman')->references('id_peminjaman')->on('peminjaman')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('id_buku')->unsigned();
             $table->foreign('id_buku')->references('id_buku')->on('buku')->onDelete('cascade')->onUpdate('cascade');
             $table->Integer('qty');
