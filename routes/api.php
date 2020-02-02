@@ -83,3 +83,4 @@ Route::post('detail','PeminjamanController@store1');
 Route::put('detail/{id}','PeminjamanController@update1');
 Route::delete('detail/{id}','PeminjamanController@delete1');
 Route::get('detail','PeminjamanController@tampil1');
+
